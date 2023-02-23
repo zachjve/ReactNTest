@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 
 export default function App() {
   const [goalInput, setGoalInput] = useState('');
-  const [goals, setGoals] = useState([]);
+  const [goals, setGoals] = useState([...sampleGoals]);
 
   const handleAddGoal = () => {
     if (goalInput.trim()) {
@@ -13,20 +13,28 @@ export default function App() {
     }
   }
 
+  const handleDeleteGoal = (index) => {
+    const newGoals = [...goals]
+    newGoals.splice(index, 1);
+    setGoals(newGoals);
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello World!</Text>
-      {sampleGoals.map((goal, index) => (
-        <Text key={index}>{goal}</Text>
-      ))}
+      <Text style={styles.text}>Liste des objectfs!</Text>
       {goals.map((goal, index) => (
-        <Text key={index}>{goal}</Text>
+        <View key={index} style={styles.goalContainer}>
+          <Text>{goal}</Text>
+          <TouchableOpacity onPress={() => handleDeleteGoal(index)} style={styles.deleteButton}>
+            <Text style={styles.deleteButtonText}>Supprimer</Text>
+          </TouchableOpacity>
+        </View>
       ))}
       <TextInput value={goalInput} style={styles.input}
         placeholder="Entrez un objectif" 
         onChangeText={(text) => setGoalInput(text)}>
       </TextInput>
-      <TouchableOpacity onPress={handleAddGoal} style={styles.button}>
+      <TouchableOpacity onPress={handleAddGoal} style={styles.Addbutton}>
         <Text>Ajouter</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
@@ -58,7 +66,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
-  button: {
+  Addbutton: {
     backgroundColor: 'grey',
     padding: 10,
     borderRadius: 5,
@@ -71,5 +79,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  goalContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  deleteButton: {
+    backgroundColor: 'red',
+    padding: 5,
+    borderRadius: 5,
+    marginLeft: 5,
+  },
+  deleteButtonText: {
+    color: '#fff',
+    fontSize: 10,
+  },
+  goalText: {
+    flex: 1,
+    fontSize: 18,
   },
 });
