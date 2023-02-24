@@ -1,43 +1,47 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 export default function AddInput({handleAddGoal, goalInput, setGoalInput}) {
     return (
-    <View style={styles.container}>
-        <TextInput 
-            value={goalInput} 
-            style={styles.input}
-            placeholder="Entrez un objectif" 
-            onChangeText={(text) => setGoalInput(text)}>
-        </TextInput>
-        <TouchableOpacity 
-            onPress={() => {handleAddGoal()}} 
-            style={styles.Addbutton}>
-            <Text>Ajouter</Text>
-        </TouchableOpacity>
-    </View >
+        <KeyboardAvoidingView behavior="padding" style={styles.container} keyboardVerticalOffset={50}>
+            <TextInput 
+                value={goalInput} 
+                style={styles.input}
+                placeholder="Entrez un objectif" 
+                onChangeText={(text) => setGoalInput(text)}>
+            </TextInput>
+            <TouchableOpacity 
+                style={styles.addButton} onPress={() => {handleAddGoal()}}>
+                <Text style={styles.addButtonText}>Ajouter</Text>
+            </TouchableOpacity>
+        </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        width: 250,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-    },
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        marginVertical: 20,
     },
-    Addbutton: {
-        backgroundColor: 'grey',
+      input: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: 'gray',
         padding: 10,
+        marginRight: 10,
+        fontSize: 18,
         borderRadius: 5,
-        marginBottom: 10,
+        fontSize: 16,
+    },
+      addButton: {
+        backgroundColor: 'green',
+        paddingHorizontal: 10,
+        paddingVertical: 12,
+        borderRadius: 5,
+    },
+      addButtonText: {
+        color: 'white',
     },
 })
 

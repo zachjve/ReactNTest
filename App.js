@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, } from 'react-native';
+
 import AddInput from './components/AddInput';
 import ListGoal from './components/ListGoal';
 
@@ -23,17 +24,17 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Liste des objectifs!</Text>
+      <ListGoal
+        goals={goals}
+        handleDeleteGoal={handleDeleteGoal}
+      />
       <AddInput 
         handleAddGoal={handleAddGoal} 
         goalInput={goalInput} 
         setGoalInput={setGoalInput} 
       />
-      <Text style={styles.text}>Liste des objectfs!</Text>
-      <ListGoal
-        goals={goals}
-        handleDeleteGoal={handleDeleteGoal}
-      />
-      <StatusBar style="auto" />
+        <StatusBar style="auto" />
     </View>
   );
 }
@@ -57,10 +58,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
+    marginTop: 30,
   },
-  text: {
-    color: 'black',
+  title: {
+    fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 20,
   },
 });
 
