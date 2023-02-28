@@ -1,11 +1,16 @@
-import { View, Text, Modal, StyleSheet, Pressable, TextInput, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, Modal, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
 
-export default function EditModal(props) {
+export default function EditModal({ item, index, handleEditGoal }) {
     const [modalVisible, setModalVisible] = useState(false);
+    const [editGoal, setEditGoal] = useState(item)
+    
+    useEffect( () => {
+      setEditGoal(item)
+    }, [item]);
 
     return (
-        <View>
+      <View>
         <Modal
           animationType="slide"
           transparent={true}
@@ -16,22 +21,33 @@ export default function EditModal(props) {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
-              <Pressable
+              <View style={styles.container}>
+                <TextInput
+                  style={styles.modalInput}
+                  value={editGoal}
+                  onChangeText={(text) => setEditGoal(text)}>
+                </TextInput>
+                <TouchableOpacity 
+                  style={styles.buttonEditModal}
+                  onPress={() => {handleEditGoal(index, editGoal)}}>
+                  <Text style={styles.textStyle}>Edit</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
+                <Text style={styles.textStyle}>Cancel</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>
-        <Pressable
-          style={[styles.button, styles.buttonOpen]}
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => setModalVisible(true)}>
           <Text style={styles.textStyle}>Edit</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
-   )
+    )
 }
 
 const styles = StyleSheet.create({
@@ -63,19 +79,34 @@ const styles = StyleSheet.create({
       borderRadius: 50,
       marginLeft: 5,
     },
-    buttonOpen: {
-      backgroundColor: 'blue',
-    },
     buttonClose: {
+      marginTop: 30,
       backgroundColor: 'orange',
     },
     textStyle: {
       color: 'white',
       textAlign: 'center',
-      fontSize: 12,
+      fontSize: 14,
     },
     modalText: {
       marginBottom: 15,
       textAlign: 'center',
+    },
+    modalInput: {
+      borderWidth: 1,
+      borderColor: 'gray',
+      padding: 10,
+      marginRight: 10,
+      borderRadius: 5,
+      fontSize: 14,
+    },
+    buttonEditModal: {
+      backgroundColor: 'blue',
+      paddingHorizontal: 10,
+      paddingVertical: 12,
+      borderRadius: 5,
+    },
+    container: {
+      flexDirection: 'row',
     },
   });

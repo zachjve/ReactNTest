@@ -1,15 +1,20 @@
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
 import EditModal from './EditModal.js';
 
-export default function ListGoal({ goals, handleDeleteGoal, handleEditGoal}) {
-    const renderGoalItem = ({ item, index }) => (
+export default function ListGoal({ goals, handleDeleteGoal, handleEditGoal }) {
+
+  const renderGoalItem = ({ item, index }) => (
       <View style={styles.goalContainer}>
         <View style={styles.buttonContainer}>
             <Text style={styles.goalText}>{item}</Text>
             <TouchableOpacity onPress={() => handleDeleteGoal(index)} style={styles.deleteButton}>
                 <Text style={styles.deleteButtonText}>X</Text>
             </TouchableOpacity>
-            <EditModal></EditModal>
+            <EditModal 
+              item={item}
+              index={index}
+              handleEditGoal={handleEditGoal}>
+            </EditModal>
         </View>
       </View>
     );
@@ -28,7 +33,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginVertical: 5,
+        marginVertical: 8,
     },
       goalText: {
         fontSize: 15,
@@ -46,6 +51,6 @@ const styles = StyleSheet.create({
     },
       deleteButtonText: {
         color: 'white',
-        fontSize: 12,
+        fontSize: 14,
     },
 });

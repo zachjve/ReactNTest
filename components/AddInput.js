@@ -2,7 +2,10 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } f
 
 export default function AddInput({handleAddGoal, goalInput, setGoalInput}) {
     return (
-        <KeyboardAvoidingView behavior="padding" style={styles.container} keyboardVerticalOffset={50}>
+        <KeyboardAvoidingView
+            behavior="padding" 
+            style={styles.container} 
+            keyboardVerticalOffset={50}>
             <TextInput 
                 value={goalInput} 
                 style={styles.input}
@@ -30,7 +33,6 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         padding: 10,
         marginRight: 10,
-        fontSize: 18,
         borderRadius: 5,
         fontSize: 16,
     },

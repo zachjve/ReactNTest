@@ -16,6 +16,13 @@ export default function App() {
     }
   }
 
+  const handleEditGoal = (index, editGoalText) => {
+    const newGoals = [...goals];
+    console.log(editGoalText)
+    newGoals[index] = editGoalText;
+    setGoals(newGoals);
+  }
+
   const handleDeleteGoal = (index) => {
     const newGoals = [...goals]
     newGoals.splice(index, 1);
@@ -28,6 +35,7 @@ export default function App() {
       <ListGoal
         goals={goals}
         handleDeleteGoal={handleDeleteGoal}
+        handleEditGoal={handleEditGoal}
       />
       <AddInput 
         handleAddGoal={handleAddGoal} 
