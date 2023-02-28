@@ -5,6 +5,8 @@ import { StyleSheet, Text, View, } from 'react-native';
 import AddInput from './components/AddInput';
 import ListGoal from './components/ListGoal';
 
+// Le dossier app contient les fonctions delete, edit, et add. 
+// Il retourne ces deux composants AddInput et ListGoal(qui contient le composant de la modale).
 export default function App() {
   const [goalInput, setGoalInput] = useState('');
   const [goals, setGoals] = useState([...sampleGoals]);

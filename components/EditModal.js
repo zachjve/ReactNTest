@@ -1,6 +1,8 @@
 import { View, Text, Modal, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
 
+// L'editModal est le composant de la ListGoal il contient la modale.
+// Le useEffect est utilsé pour reset l'item ainsi eviter un bug "d'index".
 export default function EditModal({ item, index, handleEditGoal }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [editGoal, setEditGoal] = useState(item)

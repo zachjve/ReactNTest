@@ -1,6 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
 import EditModal from './EditModal.js';
 
+// Ce composant contient la liste et l'affiche avec le button delete qui est itéré.
+// Il contient un composant de la modale (car elle s'affiche on press du boutton edit en fonction de 
+// l'item selectionné pour le modifier). Le boutton edit est dans le composant "EditModal"
+// Ma flatlist retourne renderGoalItem.
 export default function ListGoal({ goals, handleDeleteGoal, handleEditGoal }) {
 
   const renderGoalItem = ({ item, index }) => (

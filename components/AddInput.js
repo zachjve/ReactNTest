@@ -1,5 +1,7 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
+// Composant de l'input et du button qui ajoute un goal avec le style. 
+// le Keyboard... permet de "stick" mon input au clavier. 
 export default function AddInput({handleAddGoal, goalInput, setGoalInput}) {
     return (
         <KeyboardAvoidingView
